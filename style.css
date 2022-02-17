@@ -8,6 +8,13 @@
     gap: 10px;
 }
 
+.message{
+    grid-column: 1/ span 3;
+    margin: 1em auto 1em auto;
+    font: 3em sans-serif;
+    color: wheat;
+}
+
 .tileSize{
     width: 10em;
     height: 10em;

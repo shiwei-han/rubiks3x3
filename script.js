@@ -8,7 +8,12 @@ const TILE_COLOR_CSS = {
     CLEAR: "clearTile"
 }
 
+const MESSAGE_CSS = "message";
+
+let mainDiv;
+
 const loadTiles = (mainDivId) => {
+    mainDiv = document.getElementById(mainDivId);
     const tileColors = shuffle([TILE_COLOR_CSS.RED, 
                           TILE_COLOR_CSS.RED,
                           TILE_COLOR_CSS.BLUE,
@@ -25,12 +30,13 @@ const loadTiles = (mainDivId) => {
         element.classList.add(tileColors[i]);
         element.addEventListener("touchstart", tileClick);
         element.addEventListener("click", tileClick);
-        document.getElementById(mainDivId).appendChild(element);
+
+        mainDiv.appendChild(element);
     }
 }
 
 const tileClick = (event) => {
-    const tiles = Array.from(event.target.parentElement.children);
+    const tiles = Array.from(mainDiv.children);
 
     const clearTile = tiles.filter(tile => tile.classList.contains(TILE_COLOR_CSS.CLEAR))[0];
     const clickedTile = event.target;
@@ -51,14 +57,27 @@ const checkWin = (tiles) =>{
         const tilesSharingColor = tiles.filter(tile => tile.classList.contains(result.value));
         if(tilesSharingColor.length == 2){
             if(!isAdjacent(tiles, tilesSharingColor[0], tilesSharingColor[1])){
-                return false;
+                return;
             }
         }
         
         result = iterator.next();
     }
-    alert("You win!!");
-    return true;
+    
+    showWinMessage();
+    disableAllclickEvents(tiles);
+}
+
+const showWinMessage = () => {
+    const element = document.createElement("div");
+    element.classList.add(MESSAGE_CSS);
+    element.innerHTML = "Well done!";
+
+    mainDiv.appendChild(element);
+}
+
+const disableAllclickEvents = (tiles) => {
+    tiles.forEach(tile => tile.replaceWith(tile.cloneNode(true)));
 }
 
 const isAdjacent = (tiles, tile1, tile2) => {

@@ -1,0 +1,37 @@
+.main{
+    background-color: transparent;
+    width:min-content;
+    height: min-content;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.tileSize{
+    width: 10em;
+    height: 10em;
+}
+
+.redTile{
+    background-color: red;
+}
+
+.blueTile{
+    background-color: blue;
+}
+
+.yellowTile{
+    background-color: yellow;
+}
+
+.greenTile{
+    background-color: green;
+}
+
+.clearTile{
+    background-color: transparent;
+}
+body{
+    background-color: #282828;
+}

@@ -28,7 +28,6 @@ const loadTiles = (mainDivId) => {
         const element = document.createElement("div");
         element.classList.add(TILE_SIZE_CSS);
         element.classList.add(tileColors[i]);
-        element.addEventListener("touchstart", tileClick);
         element.addEventListener("click", tileClick);
 
         mainDiv.appendChild(element);

@@ -5,6 +5,7 @@ export default class Rubik3x3 {
             "beforeend",
             "<link rel=\"stylesheet\" href=\"rubiks3x3/rubiks3x3.css\" />");
 
+        this.APP_CSS = "app";
         this.TILE_SIZE_CSS = "tileSize";
         this.TILE_COLOR_CSS = {
             RED: "redTile",
@@ -19,7 +20,13 @@ export default class Rubik3x3 {
     }
 
     getHtmlElements() {
-        return this.tiles.concat(this.message);
+        const app = document.createElement("div");
+        app.classList.add(this.APP_CSS);
+        this.tiles.concat(this.message).forEach(e => {
+            app.appendChild(e);
+        });
+        
+        return [app];
     }
 
     generateTiles() {

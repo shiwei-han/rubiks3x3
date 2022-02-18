@@ -3,7 +3,7 @@ export default class Rubik3x3 {
     constructor() {
         document.getElementsByTagName("head")[0].insertAdjacentHTML(
             "beforeend",
-            "<link rel=\"stylesheet\" href=\"rubiks3x3/rubiks3x3.css\" />");
+            "<link rel=\"stylesheet\" href=\"./rubiks3x3/rubiks3x3.css\" />");
 
         this.APP_CSS = "app";
         this.TILE_SIZE_CSS = "tileSize";

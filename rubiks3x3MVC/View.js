@@ -6,7 +6,7 @@ export default class View {
             "beforeend",
             "<link rel=\"stylesheet\" href=\"./rubiks3x3MVC/style/rubiks3x3.css\" />");
         this.APP_CSS = "app";
-        this.TILE_SIZE_CSS = "tileSize";
+        this.TILE_SIZE_CSS = this.addTileSizeCSS();
         this.TILE_COLOR_CSS = {
             CLEAR: "clearTile",
             RED: "redTile",
@@ -81,6 +81,7 @@ export default class View {
         const head = document.getElementsByTagName('head')[0];
         Array.from(head.getElementsByTagName('style')).forEach(e => head.removeChild(e));
         Array.from(this.getDOM().childNodes).forEach(e => this.getDOM().removeChild(e));
+        this.addTileSizeCSS();
     }
 
     addAppGridCSS(){
@@ -91,9 +92,14 @@ export default class View {
     }
 
     addTileSizeCSS(){
-        let grid = document.createElement('style');
-        grid.innerHTML = '.tileSize { width: '+(10-this.controller.getRowSize())+'em;height: '+(10-this.controller.getRowSize())+'em;; }';
-        document.getElementsByTagName('head')[0].appendChild(grid);
+        const tileSize = document.createElement('style');
+        let rowSize = 3;
+        if(this.controller){
+            rowSize = this.controller.getRowSize();
+        }
+        const size = (100 - rowSize)/rowSize;
+        tileSize.innerHTML = '.tileSize { width: ' + size +'vmin;height: '+size+'vmin;}';
+        document.getElementsByTagName('head')[0].appendChild(tileSize);
         return 'tileSize';
     }
 
@@ -110,7 +116,7 @@ export default class View {
         const model = this.controller.getGridModel();
         return model.flat().map( (model, idx) => {
             const element = document.createElement("div");
-            element.classList.add(this.addTileSizeCSS());
+            element.classList.add(this.TILE_SIZE_CSS);
             element.classList.add(this.translateModelToClassName(model));
             element.onclick = this.onTileClicked.bind(this);
             return element;

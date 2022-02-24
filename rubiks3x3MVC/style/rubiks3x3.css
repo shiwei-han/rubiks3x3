@@ -4,14 +4,18 @@
     height: min-content;
     margin: auto;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
     gap: 10px;
 }
 
 .message{
-    grid-column: 1/ span 3;
     margin: 1em auto 1em auto;
     font: 3em sans-serif;
+    color: wheat;
+}
+
+.level{
+    margin: 1em auto 1em auto;
+    font: 2em sans-serif;
     color: wheat;
 }
 
@@ -38,4 +42,12 @@
 
 .clearTile{
     background-color: transparent;
+}
+
+.orangeTile{
+    background-color: orange;
+}
+
+.plumTile{
+    background-color: plum;
 }

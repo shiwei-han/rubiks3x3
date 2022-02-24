@@ -90,6 +90,13 @@ export default class View {
         return 'appGrid';
     }
 
+    addTileSizeCSS(){
+        let grid = document.createElement('style');
+        grid.innerHTML = '.tileSize { width: '+(10-this.controller.getRowSize())+'em;height: '+(10-this.controller.getRowSize())+'em;; }';
+        document.getElementsByTagName('head')[0].appendChild(grid);
+        return 'tileSize';
+    }
+
     onTileClicked(event){
         this.controller.onTileClicked(Array.from(this.viewDOM.childNodes).indexOf(event.target), this._render.bind(this));
     }
@@ -103,7 +110,7 @@ export default class View {
         const model = this.controller.getGridModel();
         return model.flat().map( (model, idx) => {
             const element = document.createElement("div");
-            element.classList.add(this.TILE_SIZE_CSS);
+            element.classList.add(this.addTileSizeCSS());
             element.classList.add(this.translateModelToClassName(model));
             element.onclick = this.onTileClicked.bind(this);
             return element;

@@ -19,11 +19,6 @@
     color: wheat;
 }
 
-.tileSize{
-    width: 7em;
-    height: 7em;
-}
-
 .redTile{
     background-color: red;
 }

@@ -2,9 +2,9 @@ import Index2D from './Index2D.js';
 
 export default class Model {
 
-    constructor() {
-        this.rowSize = 3;
-        this.initialize(this.rowSize);
+    constructor(rowSize) {
+        this.rowSize = rowSize;
+        this.initialize(rowSize);
     }
 
     initialize(level) {

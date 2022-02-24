@@ -1,12 +1,12 @@
 import Index2D from './Index2D.js';
 
 export default class View {
-    constructor() {
+    constructor(rowSize) {
         document.getElementsByTagName("head")[0].insertAdjacentHTML(
             "beforeend",
             "<link rel=\"stylesheet\" href=\"./rubiks3x3MVC/style/rubiks3x3.css\" />");
         this.APP_CSS = "app";
-        this.TILE_SIZE_CSS = this.addTileSizeCSS();
+        this.TILE_SIZE_CSS = this.addTileSizeCSS(rowSize);
         this.TILE_COLOR_CSS = {
             CLEAR: "clearTile",
             RED: "redTile",
@@ -79,9 +79,8 @@ export default class View {
 
     clear(){
         const head = document.getElementsByTagName('head')[0];
-        Array.from(head.getElementsByTagName('style')).forEach(e => head.removeChild(e));
         Array.from(this.getDOM().childNodes).forEach(e => this.getDOM().removeChild(e));
-        this.addTileSizeCSS();
+        Array.from(head.getElementsByTagName('style')).forEach(e => head.removeChild(e));
     }
 
     addAppGridCSS(){
@@ -91,12 +90,8 @@ export default class View {
         return 'appGrid';
     }
 
-    addTileSizeCSS(){
+    addTileSizeCSS(rowSize){
         const tileSize = document.createElement('style');
-        let rowSize = 3;
-        if(this.controller){
-            rowSize = this.controller.getRowSize();
-        }
         const size = (100 - rowSize)/rowSize;
         tileSize.innerHTML = '.tileSize { width: ' + size +'vmin;height: '+size+'vmin;}';
         document.getElementsByTagName('head')[0].appendChild(tileSize);
@@ -109,6 +104,7 @@ export default class View {
 
     onLevelClicked(event){
         this.clear();
+        this.addTileSizeCSS(parseInt(event.target.value));
         this.controller.onLevelClicked(event.target.value, this.addAppContent.bind(this));
     }
 

@@ -8,13 +8,13 @@
 }
 
 .message{
-    margin: 1em auto 1em auto;
+    margin: 2em auto 2em auto;
     font: 3em sans-serif;
     color: wheat;
 }
 
 .level{
-    margin: 1em auto 1em auto;
+    margin: 2em auto 2em auto;
     font: 2em sans-serif;
     color: wheat;
 }
@@ -45,4 +45,21 @@
 
 .plumTile{
     background-color: plum;
+}
+
+a:link, a:visited {
+    background-color: #f44336;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+  
+a:hover, a:active {
+    background-color: red;
+}
+
+a{
+    margin: 1em 1em 1em 1em;
 }

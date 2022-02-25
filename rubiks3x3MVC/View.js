@@ -122,18 +122,12 @@ export default class View {
     generateLevelSelector() {
         const div = document.createElement("div");
         for(let i=3; i<6; i++){
-            const label = document.createElement("label");
-            label.innerText = "  ";
-            div.append(label);
-            
-            const rBtn = document.createElement("input");
-            rBtn.name ='level'
-            rBtn.type = 'radio';
-            rBtn.value = i;
-            rBtn.onclick = this.onLevelClicked.bind(this);
-            div.append(rBtn);
-
-            
+            const link = document.createElement("a");
+            link.innerHTML = "&nbsp;&nbsp;"+i+"x"+i+"&nbsp;&nbsp;";
+            link.value = i;
+            link.href = "";
+            link.onclick = this.onLevelClicked.bind(this);
+            div.append(link);        
         }
         div.classList.add(this.LEVEL_CSS);
         div.classList.add(this.addWholeRowGridCSS());

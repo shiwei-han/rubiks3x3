@@ -122,8 +122,8 @@ export default class View {
     generateLevelSelector() {
         const div = document.createElement("div");
         for(let i=3; i<6; i++){
-            const link = document.createElement("a");
-            link.innerHTML = "&nbsp;&nbsp;"+i+"x"+i+"&nbsp;&nbsp;";
+            const link = document.createElement("button");
+            link.innerHTML = i;
             link.value = i;
             link.href = "";
             link.onclick = this.onLevelClicked.bind(this);

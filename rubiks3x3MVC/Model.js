@@ -119,8 +119,34 @@ export default class Model {
             clone.splice(0, 0, last);
         }
         return true;
+    }
 
+    isAllInARow(idx2Ds){
+        const allXs = idx2Ds.map(idx2D => idx2D.x);
+        if(allXs.every(x => x === allXs[0])){
+            const allYs = idx2Ds.map(idx2D => idx2D.y);
+            const minY = Math.min(...allYs);
+            const maxY = Math.max(...allYs);
+            for(let i = minY+1; i<maxY ;i++){
+                if(!allYs.includes(i)){
+                    return false;
+                }
+            }
+            return true;
+        }
 
+        const allYs = idx2Ds.map(idx2D => idx2D.y);
+        if(allYs.every(y => y === allYs[0])){
+            const allXs = idx2Ds.map(idx2D => idx2D.x);
+            const minX = Math.min(...allXs);
+            const maxX = Math.max(...allXs);
+            for(let i = minX+1; i<maxX ;i++){
+                if(!allXs.includes(i)){
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 
     swap(p1,p2, _render){
@@ -135,7 +161,7 @@ export default class Model {
         
         return !uniqueValues.some(v =>{
             const idx2Ds = this.findIndex2DsByValue(v);
-            return idx2Ds.length > 1 && !this.isConnected(idx2Ds);
+            return idx2Ds.length > 1 && !this.isAllInARow(idx2Ds);
         });
 
     }

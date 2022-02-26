@@ -60,3 +60,7 @@ button {
     cursor: pointer;
     margin: auto 1em auto 1em;
   }
+
+  .hide {
+    display:none;
+  }

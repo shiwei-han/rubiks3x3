@@ -37,10 +37,6 @@ export default class View {
         return Array.from(this.viewDOM.childNodes).filter(e => e.classList.contains(this.TILE_SIZE_CSS));
     }
 
-    getMessageDOM(){
-        return this.viewDOM.lastChild;
-    }
-
     _render(idx2Ds){
         idx2Ds.forEach(index2D => {
             this.updateTileView(index2D);
@@ -51,7 +47,8 @@ export default class View {
     }
 
     showMessage() {
-        this.getMessageDOM().innerHTML = "Well done!";
+        this.messageDOM.classList.remove("hide");
+        this.tilesDOM.forEach(e => e.onclick = undefined);
     }
 
     updateTileView(idx2D){
@@ -110,13 +107,14 @@ export default class View {
 
     generateTiles() {
         const model = this.controller.getGridModel();
-        return model.flat().map( (model, idx) => {
+        this.tilesDOM = model.flat().map( (model, idx) => {
             const element = document.createElement("div");
             element.classList.add(this.TILE_SIZE_CSS);
             element.classList.add(this.translateModelToClassName(model));
             element.onclick = this.onTileClicked.bind(this);
             return element;
         }); 
+        return this.tilesDOM;
     }
 
     generateLevelSelector() {
@@ -136,8 +134,12 @@ export default class View {
 
     generateMessage() {
         const element = document.createElement("div");
+        element.innerHTML = "Well done!";
         element.classList.add(this.MESSAGE_CSS);
+        element.classList.add("hide");
         element.classList.add(this.addWholeRowGridCSS());
+
+        this.messageDOM = element;
         return element;
     }
 

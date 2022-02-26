@@ -48,7 +48,6 @@
 }
 
 button {
-    background-color: lightslategray;
     border: none;
     color: white;
     padding: 15px 32px;
@@ -60,6 +59,17 @@ button {
     cursor: pointer;
     margin: auto 1em auto 1em;
   }
+
+  .chosenButtonColor {
+    background-color: lightgray;
+  }
+
+
+  .buttonColor {
+    background-color: gray;
+  }
+
+
 
   .hide {
     display:none;

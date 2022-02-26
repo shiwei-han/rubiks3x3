@@ -18,6 +18,10 @@ export default class View {
         }
         this.MESSAGE_CSS = "message";
         this.LEVEL_CSS = "level";
+        this.HIDE = "hide";
+
+        this.CHOSEN_BUTTON_COLOR = "chosenButtonColor";
+        this.BUTTON_COLOR = "buttonColor";
     }
 
     addController(controller) {
@@ -47,7 +51,7 @@ export default class View {
     }
 
     showMessage() {
-        this.messageDOM.classList.remove("hide");
+        this.messageDOM.classList.remove(this.HIDE);
         this.tilesDOM.forEach(e => e.onclick = undefined);
     }
 
@@ -124,6 +128,12 @@ export default class View {
             link.innerHTML = i;
             link.value = i;
             link.href = "";
+            if(i == this.controller.getRowSize()){
+                link.classList.add(this.CHOSEN_BUTTON_COLOR);
+            }else{
+                link.classList.add(this.BUTTON_COLOR);
+            }
+            
             link.onclick = this.onLevelClicked.bind(this);
             div.append(link);        
         }
@@ -136,7 +146,7 @@ export default class View {
         const element = document.createElement("div");
         element.innerHTML = "Well done!";
         element.classList.add(this.MESSAGE_CSS);
-        element.classList.add("hide");
+        element.classList.add(this.HIDE);
         element.classList.add(this.addWholeRowGridCSS());
 
         this.messageDOM = element;

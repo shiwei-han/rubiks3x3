@@ -9,17 +9,21 @@ export default class Model {
 
     initialize(level) {
         level = parseInt(level);
-        let arr = new Array();
+
+        {
+            let arr = new Array();
         
-        for(let i=1; i<level+2; i++){
-            for(let c=1; c < level; c++){
-                arr.push(i);
+            for(let i=1; i<level+2; i++){
+                for(let c=1; c < level; c++){
+                    arr.push(i);
+                }
             }
-        }
-        arr.push(0);
-        const model = this.shuffle(arr);
+            arr.push(0);
+            const model = this.shuffle(arr);
+            
+            this.gridModel = this.chunk(model, parseInt(level));
+        }while(this.hasWon());
         
-        this.gridModel = this.chunk(model, parseInt(level));
     }
 
     changeRowSize(size){

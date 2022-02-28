@@ -93,7 +93,7 @@ export default class View {
 
     addTileSizeCSS(rowSize){
         const tileSize = document.createElement('style');
-        const size = (100 - rowSize)/rowSize;
+        const size = (80 - rowSize)/rowSize;
         tileSize.innerHTML = '.tileSize { width: ' + size +'vmin;height: '+size+'vmin;}';
         document.getElementsByTagName('head')[0].appendChild(tileSize);
         return 'tileSize';

@@ -1,9 +1,11 @@
 import Index2D from './Index2D.js';
+import Model from './Model.js';
+import View from './View.js';
 
 export default class Controller {
-    constructor(model, view) {
-        this.model = model;
-        this.view = view;
+    constructor(size) {
+        this.model = new Model(size);
+        this.view = new View(size);
         this.view.addController(this);
         this.view.initialize();
     }
